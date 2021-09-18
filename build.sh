@@ -5,17 +5,17 @@ imagename=meshcommander
 
 # build
 docker pull node:latest
-docker build --no-cache=true -t $user/$imagename:lastbuilt ./ | tee build.out
+docker build --no-cache=true -t $user/$imagename:latest
 
 # get npm-installed version
-version=$( grep -E "^Meshcommander version: " build.out | awk '{ print $3 }' | sed "s/-//" )
+version=$( docker run -it --rm node:latest npm info meshcommander version | head -n1 )
 if [ -z "$version" ] ; then
 	echo "Could not grep installed version. Exit."
 	exit 1
 fi
 
 # append my version number
-version="v$version-p0"
+version="$version"
 
 # tag
 echo "Tagging lastbuilt as $user/$imagename:$version"
