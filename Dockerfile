@@ -1,5 +1,5 @@
 FROM node:latest
-LABEL maintainer "vga101 <vga101@fsync.org>"
+LABEL maintainer "Uli Köhler <docker@techoverflow.net>"
 
 ENV DEBIAN_FRONTEND noninteractive
 ARG MC_VERSION=unknown
